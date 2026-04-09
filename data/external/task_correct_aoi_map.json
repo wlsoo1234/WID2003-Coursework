@@ -1,0 +1,45 @@
+{
+  "_comment": "AOI names verified from .aois files in data/stimuli/. Correct AOIs determined from image inspection. Verify marked entries in Tobii Pro Lab before running notebooks.",
+
+  "findDice": {
+    "correct_aoi": "Dice",
+    "distractor_aois": ["M1", "M2", "Rectangle 3", "Rectangle 4", "Rectangle 5", "Rectangle 6", "Rectangle 7"],
+    "_note": "CONFIRMED — 'Dice' AOI is the actual dice object. M1/M2 are likely matchstick or other objects."
+  },
+
+  "findYummy": {
+    "correct_aoi": "Rectangle",
+    "distractor_aois": ["Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5", "Rectangle 6", "Rectangle 7", "Rectangle 8"],
+    "_note": "VERIFY — 'Rectangle' is positioned on the cook's upper-body area (X:269-314, Y:97-196 in 600x553 image). The word YUMMY is hidden in this region. Confirm in Tobii Pro Lab."
+  },
+
+  "frogInBathroom": {
+    "correct_aoi": "Rectangle",
+    "distractor_aois": ["Rectangle 1", "Rectangle 2"],
+    "_note": "VERIFY — 'Rectangle' covers the lower-left plant/bathtub area (X:200-304, Y:486-611 in 1443x1436 image) where the frog is likely hidden among plants. Rectangle 1 = upper center (macramé area), Rectangle 2 = upper right (framed picture area)."
+  },
+
+  "headphoneInBathroom": {
+    "correct_aoi": "Rectangle",
+    "distractor_aois": ["Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5", "Rectangle 6"],
+    "_note": "VERIFY — 'Rectangle' covers the center hanging robe/towel area (X:664-778, Y:372-862 in 1188x1271 image). Headphones likely hidden in or around the hanging items. Confirm in Tobii Pro Lab."
+  },
+
+  "frog": {
+    "correct_aoi": "Rectangle",
+    "distractor_aois": ["Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 4", "Rectangle 5", "Rectangle 6"],
+    "_note": "VERIFY — Task: find the frog different from the others. 'Rectangle' is at X:198-331, Y:252-342 in a 1346x954 image (upper-left pond area). Confirm which frog is visually distinct and which AOI covers it."
+  },
+
+  "whoCheats": {
+    "correct_aoi": "Rectangle 4",
+    "distractor_aois": ["Rectangle", "Rectangle 1", "Rectangle 2", "Rectangle 3", "Rectangle 5", "Rectangle 6", "Rectangle 7", "Rectangle 8", "Rectangle 9"],
+    "_note": "VERIFY — Rectangle 4 (X:363-455, Y:289-386 in 944x533 image) appears to cover the student in the lower-center of the classroom who is visibly looking sideways. Confirm against the image in Tobii Pro Lab."
+  },
+
+  "whoThief": {
+    "correct_aoi": "Rectangle 3",
+    "distractor_aois": ["Rectangle", "Rectangle 1", "Rectangle 2", "Rectangle 4", "Rectangle 5", "Rectangle 6", "Rectangle 7", "Rectangle 8"],
+    "_note": "VERIFY — Rectangle 3 (X:635-726, Y:433-481 in 601x699 image) appears to cover a person in the right-center area who may be concealing a stolen item. Confirm against the image in Tobii Pro Lab."
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "_comment": "Maps each task to its correct AOI label. Used to derive accuracy from student_responses.csv. The correct_aoi value must match the AOI name in task_correct_aoi_map.json exactly.",
+  "_response_format": "student_responses.csv uses 1=correct, 0=incorrect, blank=no response. See data_collection_manual.md Part C.",
+
+  "findDice":            { "correct_aoi": "Dice",        "task_type": "find_object",   "confirmed": true  },
+  "findYummy":           { "correct_aoi": "Rectangle",   "task_type": "find_word",     "confirmed": false, "_verify": "Confirm which Rectangle contains the hidden word YUMMY" },
+  "frogInBathroom":      { "correct_aoi": "Rectangle",   "task_type": "find_object",   "confirmed": false, "_verify": "Confirm Rectangle covers the plant/bathtub area where frog hides" },
+  "headphoneInBathroom": { "correct_aoi": "Rectangle",   "task_type": "find_object",   "confirmed": false, "_verify": "Confirm Rectangle covers the robe/towel area where headphones hide" },
+  "frog":                { "correct_aoi": "Rectangle",   "task_type": "spot_odd_one",  "confirmed": false, "_verify": "Confirm which Rectangle covers the frog that is visually different from others" },
+  "whoCheats":           { "correct_aoi": "Rectangle 4", "task_type": "identify_who",  "confirmed": false, "_verify": "Confirm Rectangle 4 covers the cheating student" },
+  "whoThief":            { "correct_aoi": "Rectangle 3", "task_type": "identify_who",  "confirmed": false, "_verify": "Confirm Rectangle 3 covers the thief" }
+}
