@@ -20,8 +20,8 @@ outputs/
 # Large raw data files
 data/raw/*.tsv
 data/raw/*
-data/stimuli/*
-data/*
+data/processed/*
+
 
 # OS
 .DS_Store

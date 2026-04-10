@@ -1,0 +1,51 @@
+{
+  "_comment": "AOI names verified from .aois files in d:/ET Demo/visial/. Correct AOIs are explicitly labelled 'answer' (or 'answer1') in the visial .aois files. Distractor AOIs use M1-M15 or aoi1-aoi9 naming.",
+
+  "findDice": {
+    "correct_aoi": "answer",
+    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7"],
+    "_note": "CONFIRMED — 'answer' AOI covers the actual dice object (X:722-883, Y:123-232 in 957x508 image). Source: findDiceAois.aois (visial)."
+  },
+
+  "findYummy": {
+    "correct_aoi": "answer",
+    "distractor_aois": ["aoi1", "aoi2", "aoi3", "aoi4", "aoi5", "aoi6", "aoi8", "aoi9"],
+    "_note": "CONFIRMED — 'answer' AOI covers the region containing the hidden word YUMMY (X:28-108, Y:349-408 in 600x553 image). Source: findYummyAois.aois (visial)."
+  },
+
+  "frogInBathroom": {
+    "correct_aoi": "answer1",
+    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10"],
+    "_note": "CONFIRMED — 'answer1' AOI covers the area where the frog is hidden (X:268-348, Y:335-415 in 1443x1436 image). Source: frogInBathroomAois.aois (visial)."
+  },
+
+  "headphoneInBathroom": {
+    "correct_aoi": "answer",
+    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8"],
+    "_note": "CONFIRMED — 'answer' AOI covers the area where headphones are hidden (X:456-598, Y:606-690 in 1188x1271 image). Source: headphoneInBathroomAois.aois (visial)."
+  },
+
+  "frog": {
+    "correct_aoi": "answer",
+    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11", "M12", "M13", "M14", "M15"],
+    "_note": "CONFIRMED — 'answer' AOI covers the frog that is visually different from the others (X:1085-1226, Y:522-621 in 1346x954 image). Source: frogAois.aois (visial)."
+  },
+
+  "whoCheats": {
+    "correct_aoi": "answer",
+    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9"],
+    "_note": "CONFIRMED — 'answer' AOI covers the cheating student (X:224-315, Y:309-383 in 944x533 image). Source: whoCheatsAois.aois (visial)."
+  },
+
+  "whoThief": {
+    "correct_aoi": "answer",
+    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10"],
+    "_note": "CONFIRMED — 'answer' AOI covers the thief (X:222-271, Y:248-298 in 950x526 image). Source: whoThiefAois.aois (visial)."
+  },
+
+  "spotNeedleInst": {
+    "correct_aoi": "answer",
+    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9"],
+    "_note": "CONFIRMED — 'answer' AOI covers the needle location (X:544-589, Y:575-662 in 601x699 image). Source: spotNeedleInstAois.aois (visial)."
+  }
+}
