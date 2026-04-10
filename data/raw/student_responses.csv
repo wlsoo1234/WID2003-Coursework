@@ -1,0 +1,5 @@
+participant_id,findDice_response,findYummy_response,frogInBathroom_response,headphoneInBathroom_response,frog_response,whoCheats_response,whoThief_response
+test1,A,B,C,D,A,B,C
+test2,B,A,A,B,C,D,A
+p001,A,B,C,D,A,B,C
+p002,C,D,B,A,B,A,D
