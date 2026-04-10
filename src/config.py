@@ -28,8 +28,9 @@ def stimulus_aois(task_name: str):
     """Return Path to a task's .aois file."""
     return DATA_STIMULI / f"{task_name}Aois.aois"
 
-# Practice trial image (not included in TASKS analysis)
-PRACTICE_TRIAL_NAME = "spotNeedleInst"
+# ── All tasks including practice/warm-up ──────────────────────────────────────
+# spotNeedleInst is treated as a task in analysis (confirmed in answer_key.json)
+PRACTICE_TRIAL_NAME = "spotNeedleInst"  # kept for backward compatibility
 
 # ── Processed file names ───────────────────────────────────────────────────────
 METRICS_CLEAN_PKL    = DATA_PROCESSED / "metrics_clean.parquet"
@@ -168,6 +169,7 @@ TASKS = [
     "frog",
     "whoCheats",
     "whoThief",
+    "spotNeedleInst",
 ]
 
 # ── Features to extract from Metrics file per (Participant, Media, AOI) ────────
