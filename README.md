@@ -143,9 +143,10 @@ Run the notebooks **in this exact sequence**. Each notebook depends on the outpu
 
 | File | Description |
 |---|---|
-| `data/raw/VisualTask with recording Metrics.tsv` | Pre-aggregated eye-tracking metrics per AOI per participant (Tobii Pro Lab export) |
-| `data/raw/VisualTask with recording Data export.tsv` | Raw gaze point data at full sampling rate (~30 MB) |
-| `data/external/task_correct_aoi_map.json` | Maps each task to its correct AOI (`answer`) and distractors (`M1`–`M15`) |
+| `data/raw/VisualTask_Metrics.tsv` | Pre-aggregated eye-tracking metrics per AOI per participant (Tobii Pro Lab export) |
+| `data/raw/VisualTask_Data_export.tsv` | Raw gaze point data at full sampling rate (~30 MB) |
+| `data/raw/student_responses.csv` | Manual response accuracy per participant per task (1 = correct, 0 = incorrect) |
+| `data/external/task_correct_aoi_map.json` | Maps each task to its correct AOI (`answer`/`answer1`) and distractors (`M1`–`M15`, `aoi1`–`aoi9`) |
 | `data/external/answer_key.json` | Confirms the correct AOI and task type for each stimulus |
 
 ---
@@ -154,8 +155,9 @@ Run the notebooks **in this exact sequence**. Each notebook depends on the outpu
 
 ### Areas of Interest (AOIs)
 Rectangular regions drawn on the stimulus image in Tobii Pro Lab. In this study, each task has:
-- **`answer`** — the region containing the target (what the participant is looking for)
+- **`answer`** (or **`answer1`** for `frogInBathroom`) — the region containing the target (what the participant is looking for)
 - **`M1`–`M15`** — distractor regions (wrong areas)
+- **`aoi1`–`aoi9`** — distractor regions used in `findYummy`
 
 ### Eye-Tracking Features
 Metrics recorded per AOI per participant:
