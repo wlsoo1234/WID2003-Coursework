@@ -67,8 +67,7 @@ WID2003/
 │   ├── 03_label_creation.ipynb
 │   ├── 04_dataset_creation.ipynb
 │   ├── 05_exploratory_analysis.ipynb
-│   ├── 06_prediction_models.ipynb
-│   └── 07_interpretation.ipynb
+│   └── 06_prediction_models.ipynb
 ├── outputs/
 │   ├── figures/              ← All plots (auto-generated)
 │   ├── models/               ← Trained model and metadata (auto-generated)
@@ -123,8 +122,6 @@ Run the notebooks **in this exact sequence**. Each notebook depends on the outpu
 04_dataset_creation
        ↙ ↘
 05_exploratory   06_prediction_models
-                        ↓
-                 07_interpretation
 ```
 
 | Step | Notebook | Time estimate |
@@ -135,7 +132,6 @@ Run the notebooks **in this exact sequence**. Each notebook depends on the outpu
 | 4 | `04_dataset_creation` | < 1 min |
 | 5 | `05_exploratory_analysis` | ~2 min |
 | 6 | `06_prediction_models` | ~5–10 min (cross-validation) |
-| 7 | `07_interpretation` | ~3 min (SHAP computation) |
 
 ---
 
