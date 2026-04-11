@@ -1,8 +1,10 @@
 # WID2003 — Cognitive Science Practical Project
 ## Predicting Cognitive Processing Style from Eye-Tracking During Visual Search Tasks
 
-**Course:** WID2003 Cognitive Science
+**Course:** WID2003 Cognitive Science 
+
 **Faculty:** Faculty of Computer Science and Information Technology (FSKTM)
+
 **University:** Universiti Malaya
 
 ---
