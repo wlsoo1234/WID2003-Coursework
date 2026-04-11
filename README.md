@@ -3,9 +3,7 @@
 
 **Course:** WID2003 Cognitive Science 
 
-**Faculty:** Faculty of Computer Science and Information Technology (FSKTM)
-
-**University:** Universiti Malaya
+**Faculty:** Faculty of Computer Science and Information Technology (FSKTM), Universiti Malaya
 
 ---
 
