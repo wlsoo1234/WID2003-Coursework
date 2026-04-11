@@ -14,9 +14,9 @@ OUTPUTS_MODELS  = ROOT / "outputs" / "models"
 OUTPUTS_REPORTS = ROOT / "outputs" / "reports"
 
 # ── Raw file names ─────────────────────────────────────────────────────────────
-METRICS_TSV    = DATA_RAW / "VisualTask with recording Metrics.tsv"
+METRICS_TSV    = DATA_RAW / "VisualTask_Metrics.tsv"
 # METRICS_TSV = DATA_RAW / "mock_VisualTask_Metrics.tsv"
-DATAEXPORT_TSV = DATA_RAW / "VisualTask with recording Data export.tsv"
+DATAEXPORT_TSV = DATA_RAW / "VisualTask_Data_export.tsv"
 # DATAEXPORT_TSV = DATA_RAW / "mock_VisualTask_Data_export.tsv"
 
 # ── Stimuli paths ─────────────────────────────────────────────────────────────
