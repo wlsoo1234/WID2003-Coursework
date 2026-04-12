@@ -194,6 +194,11 @@ See the individual README for each notebook inside the `notebooks/` folder for l
 
 ---
 
+## Inquiry
+
+For any inquiry, please email to sooweelim@um.edu.my .
+
+---
 ## References
 
 - Holmqvist, K. et al. (2011). *Eye Tracking: A Comprehensive Guide to Methods and Measures*. Oxford University Press.
