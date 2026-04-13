@@ -137,6 +137,8 @@ Run the notebooks **in this exact sequence**. Each notebook depends on the outpu
 
 ## Data Files
 
+You can download the raw data files (`student_responses.csv`, `VisualTask_Data_export.tsv`, and `VisualTask_Metrics.tsv`) from [this Google Drive link](https://drive.google.com/drive/folders/1a6jgH7E-a9mUzhoJyLGDlW8e7_VGAhAw?usp=sharing).
+
 | File | Description |
 |---|---|
 | `data/raw/VisualTask_Metrics.tsv` | Pre-aggregated eye-tracking metrics per AOI per participant (Tobii Pro Lab export) |
