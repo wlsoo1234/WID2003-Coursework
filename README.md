@@ -158,6 +158,24 @@ Rectangular regions drawn on the stimulus image in Tobii Pro Lab. In this study,
 - **`M1`–`M15`** — distractor regions (wrong areas)
 - **`aoi1`–`aoi9`** — distractor regions used in `findYummy`
 
+#### Exporting AOIs and Stimuli
+To export the AOI file (`.aois`) and the stimulus image annotated with AOIs (`.png`) from Tobii Pro Lab:
+- Go to **Analyse** drop-down menu > **AOI Tool**. 
+- Select the image/snapshot/stimulus in the AOI Visualization that you wish to export.
+- Right-click on the image/snapshot/stimulus.
+
+**For exporting the image (`.png`):**
+- Click **Export Image** in the context menu.
+- In the Save As dialogue, enter a file name in the File name input field.
+- Navigate to the folder into which you want to save the image and click **Save**.
+
+**For exporting the AOIs (`.aois`):**
+1. Open the AOI Tool from the Analyze drop-down list at the top of Pro Lab.
+2. Select the media in the Media Selection panel.
+3. Right-click the media in the main viewer and select **Export AOIs**.
+4. Save the file.
+*(Note: When no AOIs exist, the Export option is disabled.)*
+
 ### Eye-Tracking Features
 Metrics recorded per AOI per participant:
 
