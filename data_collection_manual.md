@@ -7,11 +7,11 @@ This document is a standalone guide for study operators. No coding background is
 
 ## Overview
 
-**Study goal:** Record eye-tracking data while students complete 7 visual search tasks, then use machine learning to classify students as High/Low performers based on their gaze patterns.
+**Study goal:** Record eye-tracking data while students complete 13 visual search tasks, then use machine learning to classify students as High/Low performers based on their gaze patterns.
 
 **What you need to prepare:**
 1. Eye-tracker hardware (Tobii Pro)
-2. 7 visual search task stimuli (images)
+2. 13 visual search task stimuli (images)
 3. AOI definitions in Tobii Pro Lab
 4. This manual filled in with correct answers and AOI labels
 
@@ -20,9 +20,9 @@ This document is a standalone guide for study operators. No coding background is
 |------|----------------|
 | Operator | Runs the eye-tracker, starts/stops recordings |
 | Participant manager | Brings in the next student, explains the task |
-| Response recorder | Notes which answer (A/B/C/D) each student gave per question |
+| Response recorder | Notes which region the student clicked per task (or leaves this to the automated extraction — see Part C) |
 | Observer | Monitors data quality, flags tracking issues |
-| Data recorder | Enters response data into `student_responses.csv` |
+| Data recorder | Enters/verifies response data in `student_responses.csv` |
 
 ---
 
@@ -31,21 +31,27 @@ This document is a standalone guide for study operators. No coding background is
 Complete this before the first participant arrives.
 
 ### A1. Stimuli preparation
-- [ ] All 7 task images are loaded into Tobii Pro Lab as separate "slides" or "media"
+- [ ] All 13 task images are loaded into Tobii Pro Lab as separate "slides" or "media"
 - [ ] Task names in Pro Lab exactly match these (case-sensitive):
+  - `Crown`
   - `findDice`
-  - `findYummy`
-  - `frogInBathroom`
-  - `headphoneInBathroom`
-  - `frog`
-  - `whoCheats`
-  - `whoThief`
-- [ ] A practice trial image (not one of the 7 tasks) is prepared
+  - `Hat`
+  - `Iguana`
+  - `Rabbit`
+  - `Shoe`
+  - `T1_Prisoner-15sec`
+  - `T2_Ring-15sec`
+  - `T3_Umbrella-15 sec` (note the space before "sec")
+  - `T4_Pen-15sec`
+  - `T5_Fish-15sec`
+  - `T6_Heart-15sec`
+  - `Toothbrush`
+- [ ] Instruction/calibration screens (`Welcome`, `StudyInst`, `PracticeInst`, `TaskInst`, `CheckInst`, `EndTask`) are prepared separately and are not scored tasks
 - [ ] Task display order is fixed — all participants see tasks in the same order
 
 ### A2. AOI definition (do this in Tobii Pro Lab)
-- [ ] For each of the 7 tasks, open the AOI editor in Pro Lab
-- [ ] Draw rectangles over: the question/problem area, and each answer option (A, B, C, D)
+- [ ] For each of the 13 tasks, open the AOI editor in Pro Lab
+- [ ] Draw one rectangle per candidate region where the hidden target could be (the correct region plus every distractor region) — each task typically has 10–17 candidate regions, not a fixed A/B/C/D set
 - [ ] Name each rectangle using consistent labels — see Part E for naming rules
 - [ ] Export the project once to confirm AOI hit columns appear in the Data export TSV
 - [ ] Fill in `data/external/task_correct_aoi_map.json` (see Part E)
@@ -57,10 +63,10 @@ Complete this before the first participant arrives.
 - [ ] Chin rest is in place (strongly recommended for data quality)
 - [ ] Test recording runs without errors on a lab member
 
-### A4. Response recording sheet
-- [ ] Print the response sheet (or open `student_responses.csv` on a separate device)
-- [ ] Confirm that the response recorder knows what "A/B/C/D" correspond to on screen
-- [ ] Confirm the correct answers are sealed in an envelope / known only to the study designer
+### A4. Response recording
+- [ ] Confirm participants respond by mouse-clicking the region where they found the hidden target
+- [ ] Confirm the correct AOI per task is recorded in `data/external/answer_key.json`, known only to the study designer
+- [ ] Confirm `scripts/extract_click_responses.py` will be run on the raw Data export TSV after data collection to auto-populate `student_responses.csv` (see Part C) — manual response recording is a fallback, not the primary path
 
 ---
 
@@ -87,28 +93,36 @@ Repeat this procedure for every participant.
 > - If a name is entered incorrectly, note it on the reconciliation sheet (see Part F)
 
 ### B3. Practice trial
-1. Show the practice image
-2. Tell the participant: *"You will see a picture with a question. Look at the question, then look at the answer options. When you know the answer, press the key / click on your choice."*
+1. Show the `PracticeInst` screen / practice image
+2. Tell the participant: *"You will see a picture with a hidden object somewhere in the scene. When you find it, click on it with the mouse."*
 3. Wait for the participant to respond; confirm they understood the task
 4. Do **not** give feedback on whether the practice answer was correct
 
 ### B4. Experimental trials
-1. Show the 7 task images one by one, in the pre-defined order
+1. Show the 13 task images one by one, in the pre-defined order
 2. Start recording gaze **before** the image appears on screen
-3. The response recorder notes the participant's answer (A/B/C/D) for each task
+3. The participant clicks the region where they found the hidden target; the click is captured automatically in the Data export TSV (`Event = MouseEvent`, `Event value = Down, Left`) — no manual response recording is required
 4. Mark any trial where the participant looks away, blinks excessively, or the tracker loses gaze for > 2 seconds — these trials may need to be excluded
-5. After all 7 tasks, stop the recording
+5. After all 13 tasks, stop the recording
 
 ### B5. Post-session
 1. Save the recording in Pro Lab immediately
-2. Hand the participant list to the data recorder to enter responses into `student_responses.csv`
+2. After all participants are done, run `scripts/extract_click_responses.py` against the exported Data export TSV to populate `student_responses.csv` (see Part C)
 3. Move to the next participant
 
 ---
 
 ## Part C: Recording Response Data — `student_responses.csv`
 
-After all participants are done, enter their responses into this file.
+### Preferred path: automated extraction
+After all participants are done, run:
+```
+python scripts/extract_click_responses.py
+```
+This reads `data/raw/VisualTask_CogSci Data export.tsv`, finds each participant's first mouse-click within each task's on-screen interval, determines which AOI it landed in (via the `AOI hit [...]` columns), and cross-references `data/external/answer_key.json` to write `data/raw/student_responses.csv` automatically — no manual entry needed. It also writes `data/processed/click_events_detailed.csv`, a full audit log of every click (including `response_status` — `valid_answer`, `no_click`, `outside_aoi`, `multiple_clicks`, or `missing_stimulus_end`) for quality review.
+
+### Fallback: manual entry
+If the automated extraction can't be run, enter responses by hand.
 
 ### File location
 `data/raw/student_responses.csv`
@@ -117,26 +131,31 @@ After all participants are done, enter their responses into this file.
 
 | Column | Description | Allowed values |
 |--------|-------------|----------------|
-| `participant_id` | Participant name as entered in Tobii Pro Lab, **lowercase** | e.g., `p01`, `p02` |
-| `findDice_response` | Answer given for the findDice task | `A`, `B`, `C`, `D`, or `NA` |
-| `findYummy_response` | Answer for findYummy | `A`, `B`, `C`, `D`, or `NA` |
-| `frogInBathroom_response` | Answer for frogInBathroom | `A`, `B`, `C`, `D`, or `NA` |
-| `headphoneInBathroom_response` | Answer for headphoneInBathroom | `A`, `B`, `C`, `D`, or `NA` |
-| `frog_response` | Answer for frog | `A`, `B`, `C`, `D`, or `NA` |
-| `whoCheats_response` | Answer for whoCheats | `A`, `B`, `C`, `D`, or `NA` |
-| `whoThief_response` | Answer for whoThief | `A`, `B`, `C`, `D`, or `NA` |
+| `participant_id` | Participant name as entered in Tobii Pro Lab, **lowercase** | e.g., `vt1`, `vt2` |
+| `Crown_response` | Whether the participant clicked the correct AOI for Crown | `1`, `0`, or blank |
+| `findDice_response` | Whether the participant clicked the correct AOI for findDice | `1`, `0`, or blank |
+| `Hat_response` | Whether the participant clicked the correct AOI for Hat | `1`, `0`, or blank |
+| `Iguana_response` | Whether the participant clicked the correct AOI for Iguana | `1`, `0`, or blank |
+| `Rabbit_response` | Whether the participant clicked the correct AOI for Rabbit | `1`, `0`, or blank |
+| `Shoe_response` | Whether the participant clicked the correct AOI for Shoe | `1`, `0`, or blank |
+| `T1_Prisoner-15sec_response` | Whether the participant clicked the correct AOI for T1_Prisoner-15sec | `1`, `0`, or blank |
+| `T2_Ring-15sec_response` | Whether the participant clicked the correct AOI for T2_Ring-15sec | `1`, `0`, or blank |
+| `T3_Umbrella-15 sec_response` | Whether the participant clicked the correct AOI for T3_Umbrella-15 sec | `1`, `0`, or blank |
+| `T4_Pen-15sec_response` | Whether the participant clicked the correct AOI for T4_Pen-15sec | `1`, `0`, or blank |
+| `T5_Fish-15sec_response` | Whether the participant clicked the correct AOI for T5_Fish-15sec | `1`, `0`, or blank |
+| `T6_Heart-15sec_response` | Whether the participant clicked the correct AOI for T6_Heart-15sec | `1`, `0`, or blank |
+| `Toothbrush_response` | Whether the participant clicked the correct AOI for Toothbrush | `1`, `0`, or blank |
 
 ### Example file content
 ```
-participant_id,findDice_response,findYummy_response,frogInBathroom_response,headphoneInBathroom_response,frog_response,whoCheats_response,whoThief_response
-p01,B,A,C,D,A,B,C
-p02,A,A,C,D,B,B,A
-p03,NA,C,A,D,A,C,C
+participant_id,Crown_response,findDice_response,Hat_response,Iguana_response,Rabbit_response,Shoe_response,T1_Prisoner-15sec_response,T2_Ring-15sec_response,T3_Umbrella-15 sec_response,T4_Pen-15sec_response,T5_Fish-15sec_response,T6_Heart-15sec_response,Toothbrush_response
+vt1,1,1,0,1,1,1,0,1,1,1,0,1,1
+vt2,0,1,1,1,0,1,1,1,0,1,1,1,0
 ```
 
 ### Rules
-- Use `NA` (not blank, not 0) if a participant did not respond to a task
-- `participant_id` must be **lowercase** (the notebook normalizes Tobii names to lowercase automatically)
+- Leave blank (not `NA`) if a participant did not click anywhere within a task's interval
+- `participant_id` must be **lowercase**
 - Do not add extra columns or change column order
 - Save as UTF-8 CSV
 
@@ -144,7 +163,7 @@ p03,NA,C,A,D,A,C,C
 
 ## Part D: Answer Key Creation — `answer_key.json`
 
-This file tells the notebook which answer letter (A/B/C/D) is correct for each task.
+This file tells the pipeline which AOI is the correct target region for each task.
 
 **Only the study designer (who prepared the stimuli) should fill this in.**
 
@@ -153,80 +172,67 @@ This file tells the notebook which answer letter (A/B/C/D) is correct for each t
 
 ### How to fill it in
 
-Open the file and replace each `"?"` with the correct letter:
+Open the file and set `correct_aoi` to the exact AOI name (from the `.aois` file, e.g. `C1`, `D1`) that covers the hidden target:
 
 ```json
 {
-  "findDice":            "B",
-  "findYummy":           "A",
-  "frogInBathroom":      "C",
-  "headphoneInBathroom": "D",
-  "frog":                "A",
-  "whoCheats":           "B",
-  "whoThief":            "C"
+  "Crown":               { "correct_aoi": "C1", "task_type": "find_object", "confirmed": true },
+  "findDice":            { "correct_aoi": "D1", "task_type": "find_object", "confirmed": true },
+  "Hat":                 { "correct_aoi": "H1", "task_type": "find_object", "confirmed": true }
 }
 ```
 
-**What A/B/C/D means:** This corresponds to the layout of answer options on screen. You must define a consistent mapping. Recommended convention:
-
-| Letter | Screen position |
-|--------|----------------|
-| A | Top-left |
-| B | Top-right |
-| C | Bottom-left |
-| D | Bottom-right |
-
-Document this mapping somewhere so the response recorder uses the same convention.
+There is no A/B/C/D convention in this study — each task has one correct AOI among several candidate regions (10–17 per task), and every other AOI in that stimulus is a distractor (recorded in `task_correct_aoi_map.json`, Part E).
 
 ---
 
 ## Part E: Correct AOI Verification — `task_correct_aoi_map.json`
 
-This file tells the notebook which AOI rectangle corresponds to the correct answer for each task.
+This file tells the pipeline which AOI rectangle is correct and which are distractors, for each task.
 
 ### Why this matters
 In Tobii Pro Lab, AOIs are named as rectangles. The Data export TSV has columns like:
 ```
-AOI hit [findDice - Dice]
-AOI hit [findDice - M1]
-AOI hit [findDice - Rectangle 3]
+AOI hit [Crown - C1]
+AOI hit [Crown - C2]
+AOI hit [findDice - D1]
 ```
 You must confirm which rectangle is the correct answer AOI for each task.
 
 ### Step-by-step verification
 
 1. Open Tobii Pro Lab
-2. Navigate to the project → click on a task stimulus (e.g., `findDice`)
+2. Navigate to the project → click on a task stimulus (e.g., `Crown`)
 3. Open the AOI editor (View → AOI Editor, or similar)
 4. Look at which rectangle is drawn over the **correct answer area**
-5. Note the exact rectangle label (e.g., "Dice", "Rectangle", "Rectangle 2")
-6. Repeat for all 7 tasks
+5. Note the exact rectangle label (e.g., `C1`)
+6. Repeat for all 13 tasks
 
 ### File location
 `data/external/task_correct_aoi_map.json`
 
 ### How to fill it in
 
-For each task, update the `"correct_aoi"` field to the exact label you saw in Pro Lab:
+For each task, update the `"correct_aoi"` field to the exact label you saw in Pro Lab, and list every other AOI for that stimulus as `distractor_aois`:
 
 ```json
 {
-  "findDice": {
-    "correct_aoi": "Dice",
-    "distractor_aois": ["M1", "M2", "Rectangle 3", "Rectangle 4", ...]
+  "Crown": {
+    "correct_aoi": "C1",
+    "distractor_aois": ["C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10"]
   },
-  "findYummy": {
-    "correct_aoi": "Rectangle 2",
-    "distractor_aois": ["Rectangle", "Rectangle 1", "Rectangle 3", ...]
+  "findDice": {
+    "correct_aoi": "D1",
+    "distractor_aois": ["D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10"]
   }
 }
 ```
 
 **The label must match exactly** what appears in the TSV column header after the dash:
-- Column: `AOI hit [findYummy - Rectangle 2]`
-- → correct_aoi: `"Rectangle 2"`
+- Column: `AOI hit [Crown - C1]`
+- → correct_aoi: `"C1"`
 
-> **Tip:** To see all available AOI names for a task, open the Data export TSV in Excel or a text editor and search for `AOI hit [findDice`. All columns with that prefix list the available AOI labels.
+> **Tip:** To see all available AOI names for a task, open the Data export TSV in Excel or a text editor and search for `AOI hit [Crown`. All columns with that prefix list the available AOI labels.
 
 ---
 

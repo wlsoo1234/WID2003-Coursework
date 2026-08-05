@@ -1,51 +1,81 @@
 {
-  "_comment": "AOI names verified from .aois files in d:/ET Demo/visial/. Correct AOIs are explicitly labelled 'answer' (or 'answer1') in the visial .aois files. Distractor AOIs use M1-M15 or aoi1-aoi9 naming.",
+  "_comment": "AOI names verified directly from the .aois files in data/stimuli/ (new 13-task stimulus set). correct_aoi values confirmed against the real AOI names in each file; distractor_aois is every other AOI in that stimulus.",
+
+  "Crown": {
+    "correct_aoi": "C1",
+    "distractor_aois": ["C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "C10"],
+    "_note": "Source: CrownAois.aois."
+  },
 
   "findDice": {
-    "correct_aoi": "answer",
-    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7"],
-    "_note": "CONFIRMED — 'answer' AOI covers the actual dice object (X:722-883, Y:123-232 in 957x508 image). Source: findDiceAois.aois (visial)."
+    "correct_aoi": "D1",
+    "distractor_aois": ["D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "D10"],
+    "_note": "Source: findDiceAois.aois."
   },
 
-  "findYummy": {
-    "correct_aoi": "answer",
-    "distractor_aois": ["aoi1", "aoi2", "aoi3", "aoi4", "aoi5", "aoi6", "aoi8", "aoi9"],
-    "_note": "CONFIRMED — 'answer' AOI covers the region containing the hidden word YUMMY (X:28-108, Y:349-408 in 600x553 image). Source: findYummyAois.aois (visial)."
+  "Hat": {
+    "correct_aoi": "H1",
+    "distractor_aois": ["H2", "H3", "H4", "H5", "H6", "H7", "H8", "H9", "H10"],
+    "_note": "Source: HatAois.aois."
   },
 
-  "frogInBathroom": {
-    "correct_aoi": "answer1",
-    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10"],
-    "_note": "CONFIRMED — 'answer1' AOI covers the area where the frog is hidden (X:268-348, Y:335-415 in 1443x1436 image). Source: frogInBathroomAois.aois (visial)."
+  "Iguana": {
+    "correct_aoi": "I0",
+    "distractor_aois": ["I1", "I2", "I3", "I4", "I5", "I6", "I7", "I8", "I9"],
+    "_note": "Source: IguanaAois.aois."
   },
 
-  "headphoneInBathroom": {
-    "correct_aoi": "answer",
-    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8"],
-    "_note": "CONFIRMED — 'answer' AOI covers the area where headphones are hidden (X:456-598, Y:606-690 in 1188x1271 image). Source: headphoneInBathroomAois.aois (visial)."
+  "Rabbit": {
+    "correct_aoi": "R0",
+    "distractor_aois": ["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8", "R9"],
+    "_note": "Source: RabbitAois.aois."
   },
 
-  "frog": {
-    "correct_aoi": "answer",
-    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11", "M12", "M13", "M14", "M15"],
-    "_note": "CONFIRMED — 'answer' AOI covers the frog that is visually different from the others (X:1085-1226, Y:522-621 in 1346x954 image). Source: frogAois.aois (visial)."
+  "Shoe": {
+    "correct_aoi": "S0",
+    "distractor_aois": ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9"],
+    "_note": "Source: ShoeAois.aois."
   },
 
-  "whoCheats": {
-    "correct_aoi": "answer",
-    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9"],
-    "_note": "CONFIRMED — 'answer' AOI covers the cheating student (X:224-315, Y:309-383 in 944x533 image). Source: whoCheatsAois.aois (visial)."
+  "T1_Prisoner-15sec": {
+    "correct_aoi": "P0",
+    "distractor_aois": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9"],
+    "_note": "Source: T1_Prisoner-15secAois.aois."
   },
 
-  "whoThief": {
-    "correct_aoi": "answer",
-    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10"],
-    "_note": "CONFIRMED — 'answer' AOI covers the thief (X:222-271, Y:248-298 in 950x526 image). Source: whoThiefAois.aois (visial)."
+  "T2_Ring-15sec": {
+    "correct_aoi": "G0",
+    "distractor_aois": ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12", "G13"],
+    "_note": "Source: T2_Ring-15secAois.aois."
   },
 
-  "spotNeedleInst": {
-    "correct_aoi": "answer",
-    "distractor_aois": ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9"],
-    "_note": "CONFIRMED — 'answer' AOI covers the needle location (X:544-589, Y:575-662 in 601x699 image). Source: spotNeedleInstAois.aois (visial)."
+  "T3_Umbrella-15 sec": {
+    "correct_aoi": "U0",
+    "distractor_aois": ["U1", "U2", "U3", "U4", "U5", "U6", "U7", "U8", "U9", "U10", "U11", "U12", "U13", "U14", "U15", "U16"],
+    "_note": "Source: T3_Umbrella-15 secAois.aois. Stimulus name intentionally includes a space before 'sec', matching the Presented Stimulus name in the raw Tobii export."
+  },
+
+  "T4_Pen-15sec": {
+    "correct_aoi": "N0",
+    "distractor_aois": ["N1", "N2", "N3", "N4", "N5", "N6", "N7", "N8", "N9"],
+    "_note": "Source: T4_Pen-15secAois.aois."
+  },
+
+  "T5_Fish-15sec": {
+    "correct_aoi": "N1",
+    "distractor_aois": ["N2", "N3", "N4", "N5", "N6", "N7", "N8", "N9", "N10", "F0"],
+    "_note": "Source: T5_Fish-15secAois.aois. Confirmed via real click data (VisualTask_CogSci Data export.tsv, 130 participants): N1 received 36/52 landed clicks (~69%), matching the dominant-majority pattern seen on other confirmed-correct AOIs (e.g. Crown's C1: 90/97, T4_Pen's N0: 67/70). F0 received 0 clicks despite being named uniquely (presumably intended as the fish AOI) and is treated as a distractor."
+  },
+
+  "T6_Heart-15sec": {
+    "correct_aoi": "E0",
+    "distractor_aois": ["E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9"],
+    "_note": "Source: T6_Heart-15secAois.aois."
+  },
+
+  "Toothbrush": {
+    "correct_aoi": "T0",
+    "distractor_aois": ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12"],
+    "_note": "Source: ToothbrushAois.aois."
   }
 }

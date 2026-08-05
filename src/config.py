@@ -14,9 +14,9 @@ OUTPUTS_MODELS  = ROOT / "outputs" / "models"
 OUTPUTS_REPORTS = ROOT / "outputs" / "reports"
 
 # ── Raw file names ─────────────────────────────────────────────────────────────
-METRICS_TSV    = DATA_RAW / "VisualTask_Metrics.tsv"
+METRICS_TSV    = DATA_RAW / "VisualTask_CogSci Metrics.tsv"
 # METRICS_TSV = DATA_RAW / "mock_VisualTask_Metrics.tsv"
-DATAEXPORT_TSV = DATA_RAW / "VisualTask_Data_export.tsv"
+DATAEXPORT_TSV = DATA_RAW / "VisualTask_CogSci Data export.tsv"
 # DATAEXPORT_TSV = DATA_RAW / "mock_VisualTask_Data_export.tsv"
 
 # ── Stimuli paths ─────────────────────────────────────────────────────────────
@@ -29,10 +29,6 @@ def stimulus_png(task_name: str):
 def stimulus_aois(task_name: str):
     """Return Path to a task's .aois file."""
     return DATA_STIMULI / f"{task_name}Aois.aois"
-
-# ── All tasks including practice/warm-up ──────────────────────────────────────
-# spotNeedleInst is treated as a task in analysis (confirmed in answer_key.json)
-PRACTICE_TRIAL_NAME = "spotNeedleInst"  # kept for backward compatibility
 
 # ── Processed file names ───────────────────────────────────────────────────────
 METRICS_CLEAN_PKL    = DATA_PROCESSED / "metrics_clean.parquet"
@@ -116,6 +112,7 @@ class ExportCols:
     PARTICIPANT_NAME      = "Participant name"
     RECORDING_NAME        = "Recording name"
     EYETRACKER_TIMESTAMP  = "Eyetracker timestamp"
+    SENSOR                = "Sensor"
     EVENT                 = "Event"
     EVENT_VALUE           = "Event value"
 
@@ -123,6 +120,9 @@ class ExportCols:
     GAZE_Y        = "Gaze point Y"
     FIXATION_X    = "Fixation point X"
     FIXATION_Y    = "Fixation point Y"
+
+    MOUSE_X       = "Mouse position X"
+    MOUSE_Y       = "Mouse position Y"
 
     PUPIL_LEFT     = "Pupil diameter left"
     PUPIL_RIGHT    = "Pupil diameter right"
@@ -162,16 +162,34 @@ VALID_EYE_MOVEMENT_TYPES = {
     EyeMovementType.UNCLASSIFIED,
 }
 
-# ── Task names (must match Tobii "Presented Media name" / "Media" column) ──────
+# ── Mouse event value strings (Data export TSV "Event value" for Event=MouseEvent) ─
+class MouseEventValue:
+    DOWN_LEFT = "Down, Left"
+    UP_LEFT   = "Up, Left"
+
+# ── Image stimulus event names (Data export TSV "Event" column) ────────────────
+class StimulusEvent:
+    START = "ImageStimulusStart"
+    END   = "ImageStimulusEnd"
+
+MOUSE_EVENT = "MouseEvent"
+MOUSE_SENSOR = "Mouse"
+
+# ── Task names (must match Tobii "Presented Stimulus name" / "Media" column) ───
 TASKS = [
+    "Crown",
     "findDice",
-    "findYummy",
-    "frogInBathroom",
-    "headphoneInBathroom",
-    "frog",
-    "whoCheats",
-    "whoThief",
-    "spotNeedleInst",
+    "Hat",
+    "Iguana",
+    "Rabbit",
+    "Shoe",
+    "T1_Prisoner-15sec",
+    "T2_Ring-15sec",
+    "T3_Umbrella-15 sec",
+    "T4_Pen-15sec",
+    "T5_Fish-15sec",
+    "T6_Heart-15sec",
+    "Toothbrush",
 ]
 
 # ── Features to extract from Metrics file per (Participant, Media, AOI) ────────
