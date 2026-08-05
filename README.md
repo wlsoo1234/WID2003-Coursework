@@ -17,7 +17,9 @@ This project integrates three areas of cognitive science into a single end-to-en
 | **Eye-Tracking** | Measuring gaze behaviour objectively (Tobii Pro Lab) |
 | **Machine Learning** | Classifying participants as high vs. low performers |
 
-Participants completed **8 visual search tasks** while their eye movements were recorded. The goal is to build a classifier that predicts whether a student is a **high-performing** or **low-performing** problem solver based solely on their gaze patterns — without needing to know their answer.
+Participants completed **13 visual search tasks** while their eye movements were recorded. The goal is to build a classifier that predicts whether a student is a **high-performing** or **low-performing** problem solver based solely on their gaze patterns — without needing to know their answer.
+
+> **New to this project, or don't have a coding/CS background?** Start with [`notebooks_intro/`](notebooks_intro/) — a 4-part, plain-language walkthrough of the same research question and findings, no code-reading required. The technical pipeline documented below (`notebooks/01`–`07`) is for readers who want the full data/code detail.
 
 ---
 
@@ -70,7 +72,13 @@ WID2003/
 │   ├── 03_label_creation.ipynb
 │   ├── 04_dataset_creation.ipynb
 │   ├── 05_exploratory_analysis.ipynb
-│   └── 06_prediction_models.ipynb
+│   ├── 06_prediction_models.ipynb
+│   └── 07_interpretation.ipynb
+├── notebooks_intro/           ← Plain-language walkthrough (no CS background needed)
+│   ├── 01_why_this_research.ipynb
+│   ├── 02_how_we_tracked_eyes.ipynb
+│   ├── 03_what_we_found.ipynb
+│   └── 04_can_we_predict_performance.ipynb
 ├── outputs/
 │   ├── figures/              ← All plots (auto-generated)
 │   ├── models/               ← Trained model and metadata (auto-generated)
@@ -126,16 +134,19 @@ Run the notebooks **in this exact sequence**. Each notebook depends on the outpu
 04_dataset_creation
        ↙ ↘
 05_exploratory   06_prediction_models
+                        ↓
+                 07_interpretation
 ```
 
 | Step | Notebook | Time estimate |
 |---|---|---|
-| 1 | `01_data_preprocessing` | ~2 min (loads 31 MB file) |
-| 2 | `02_feature_extraction` | ~5 min |
+| 1 | `01_data_preprocessing` | ~1 min (chunked load of the ~3 GB Data export TSV) |
+| 2 | `02_feature_extraction` | ~1 min |
 | 3 | `03_label_creation` | < 1 min |
 | 4 | `04_dataset_creation` | < 1 min |
-| 5 | `05_exploratory_analysis` | ~2 min |
-| 6 | `06_prediction_models` | ~5–10 min (cross-validation) |
+| 5 | `05_exploratory_analysis` | ~1 min |
+| 6 | `06_prediction_models` | ~1–2 min (cross-validation + grid search) |
+| 7 | `07_interpretation` | ~1 min (SHAP analysis) |
 
 ---
 
