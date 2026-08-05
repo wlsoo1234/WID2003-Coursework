@@ -19,7 +19,7 @@ This project integrates three areas of cognitive science into a single end-to-en
 
 Participants completed **13 visual search tasks** while their eye movements were recorded. The goal is to build a classifier that predicts whether a student is a **high-performing** or **low-performing** problem solver based solely on their gaze patterns — without needing to know their answer.
 
-> **New to this project, or don't have a coding/CS background?** Start with [`notebooks_intro/`](notebooks_intro/) — a 4-part, plain-language walkthrough of the same research question and findings, no code-reading required. The technical pipeline documented below (`notebooks/01`–`07`) is for readers who want the full data/code detail.
+> **New to this project, or don't have a coding/CS background?** Two plain-language options, no code-reading required: [`notebooks_intro/`](notebooks_intro/) is a quick 4-part overview of the research question and headline findings; [`notebooks_student/`](notebooks_student/) is a fuller 7-part walkthrough that follows the same stage-by-stage structure as the technical pipeline below, with more charts and more detail per stage. The technical pipeline documented below (`notebooks/01`–`07`) is for readers who want the full data/code detail.
 
 ---
 
@@ -74,11 +74,19 @@ WID2003/
 │   ├── 05_exploratory_analysis.ipynb
 │   ├── 06_prediction_models.ipynb
 │   └── 07_interpretation.ipynb
-├── notebooks_intro/           ← Plain-language walkthrough (no CS background needed)
+├── notebooks_intro/            ← Quick 4-part plain-language overview (no CS background needed)
 │   ├── 01_why_this_research.ipynb
 │   ├── 02_how_we_tracked_eyes.ipynb
 │   ├── 03_what_we_found.ipynb
 │   └── 04_can_we_predict_performance.ipynb
+├── notebooks_student/          ← Fuller 7-part plain-language walkthrough, mirrors notebooks/ stage-by-stage
+│   ├── 01_getting_the_data_ready.ipynb
+│   ├── 02_turning_looks_into_numbers.ipynb
+│   ├── 03_deciding_high_or_low.ipynb
+│   ├── 04_building_one_big_table.ipynb
+│   ├── 05_do_they_really_look_different.ipynb
+│   ├── 06_teaching_a_computer_to_guess.ipynb
+│   └── 07_what_did_it_learn.ipynb
 ├── outputs/
 │   ├── figures/              ← All plots (auto-generated)
 │   ├── models/               ← Trained model and metadata (auto-generated)
